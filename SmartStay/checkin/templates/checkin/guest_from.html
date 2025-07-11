@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check-in hosta</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body class="w3-container">
+    <h2 class="w3-teal w3-center">Check-in formulář</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="w3-button w3-green" type="submit">Odeslat</button>
+    </form>
+</body>
+</html>
