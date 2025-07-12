@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Úspěšný check-in</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Check-in hosta</title> <!-- # Název záložky v prohlížeči -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- # Importujeme W3.CSS pro jednoduché designové prvky -->
 </head>
-<body class="w3-container">
-    <h2 class="w3-center w3-text-green">Host byl úspěšně uložen!</h2>
-    <div class="w3-center w3-margin-top">
-        <a class="w3-button w3-teal" href="/checkin/">Přidat dalšího hosta</a>
-        <a class="w3-button w3-light-grey" href="/">Zpět na hlavní stránku</a>
-    </div>
+<body class="w3-container"> <!-- # W3.CSS kontejner pro zarovnání obsahu -->
+
+    <h2 class="w3-teal w3-padding">Check-in formulář</h2> <!-- # Nadpis formuláře se zeleným pruhem -->
+
+    <form method="post" class="w3-container w3-card-4 w3-light-grey"> <!-- # Začátek formuláře, metoda POST pro odesílání dat -->
+        {% csrf_token %} <!-- # Bezpečnostní token proti podvržení formuláře (Cross-Site Request Forgery) -->
+        {{ form.as_p }} <!-- # Django vykreslí náš formulář jako paragrafy (každé pole má vlastní <p>) -->
+        <button type="submit" class="w3-button w3-teal w3-margin-top">Odeslat</button> <!-- # Tlačítko pro odeslání formuláře -->
+    </form>
+
 </body>
 </html>
