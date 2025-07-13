@@ -1,0 +1,34 @@
+<!-- checkin/templates/checkin/guest_checkin.html -->
+
+<!DOCTYPE html>
+<html lang="cs">  <!-- Nastavení jazyka stránky na češtinu -->
+<head>
+    <meta charset="UTF-8">  <!-- Kódování pro správné zobrazení češtiny -->
+    <title>Check-in formulář</title>  <!-- Titulek stránky -->
+</head>
+<body>
+    <h1>Check-in formulář</h1>  <!-- Nadpis formuláře -->
+
+    <form method="post">  <!-- Formulář posílá data metodou POST -->
+        {% csrf_token %}  <!-- Ochrana proti CSRF útokům – nutné v každém Django formuláři -->
+
+        {{ form.first_name.label_tag }} {{ form.first_name }}<br>  <!-- Pole pro křestní jméno -->
+        {{ form.last_name.label_tag }} {{ form.last_name }}<br>  <!-- Pole pro příjmení -->
+        {{ form.email.label_tag }} {{ form.email }}<br>  <!-- Pole pro e-mail -->
+        {{ form.nationality.label_tag }} {{ form.nationality }}<br>  <!-- Pole pro národnost -->
+        {{ form.id_number.label_tag }} {{ form.id_number }}<br>  <!-- Pole pro číslo dokladu -->
+
+        <!-- 🗓 Pole pro datum příjezdu s HTML5 kalendářem -->
+        {{ form.checkin_date.label_tag }}
+        <input type="date" name="checkin_date"><br>  <!-- Vstup typu date (kalendář) -->
+
+        <!-- 🗓 Pole pro datum odjezdu s HTML5 kalendářem -->
+        {{ form.checkout_date.label_tag }}
+        <input type="date" name="checkout_date"><br>  <!-- Vstup typu date (kalendář) -->
+
+        {{ form.stay_type.label_tag }} {{ form.stay_type }}<br><br>  <!-- Typ pobytu (krátkodobý/dlouhodobý) -->
+
+        <button type="submit">Odeslat</button>  <!-- Tlačítko pro odeslání formuláře -->
+    </form>
+</body>
+</html>

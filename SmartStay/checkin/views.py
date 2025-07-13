@@ -1,16 +1,14 @@
-from django.shortcuts import render
-from .forms import GuestForm
+from django.shortcuts import render  # ← načteme funkci pro renderování HTML šablon
+from .forms import GuestForm         # ← importujeme náš formulář pro check-in
 
-def home(request):
-    return render(request, 'checkin/home.html')
-
-def guest_checkin(request):
-    if request.method == 'POST':
-        form = GuestForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'checkin/success.html')
+def guest_checkin(request):  # ← hlavní funkce, která obsluhuje check-in stránku
+    if request.method == 'POST':  # ← kontrola, jestli uživatel odeslal formulář
+        form = GuestForm(request.POST)  # ← vytvoření instance formuláře s daty od uživatele
+        if form.is_valid():  # ← pokud všechna data ve formuláři splňují validaci
+            form.save()  # ← uložíme data do databáze
+            return render(request, 'checkin/success.html')  # ← zobrazíme stránku s potvrzením
     else:
-        form = GuestForm()
+        form = GuestForm()  # ← pokud zatím není POST, vytvoříme prázdný formulář
 
-    return render(request, 'checkin/guest_form.html', {'form': form})
+    return render(request, 'checkin/guest_checkin.html', {'form': form})  # ← pošleme formulář do šablony
+
