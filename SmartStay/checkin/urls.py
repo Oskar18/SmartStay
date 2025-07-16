@@ -1,6 +1,9 @@
-from django.urls import path  # ← importujeme funkci `path` pro tvorbu URL
-from . import views           # ← importujeme náš views soubor
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', views.guest_checkin, name='guest_checkin'),  # ← hlavní URL → spouští funkci guest_checkin
+    path('', views.home, name='home'),  # 🟢 Domovská stránka
+    path('checkin/', views.guest_checkin, name='guest_checkin'),  # 🟢 Odeslání formuláře
+    path('success/', views.success, name='success'),  # 🟢 Potvrzení odeslání
+    path('guests/', views.guest_list, name='guest_list'),  # 🟦 Seznam hostů
 ]

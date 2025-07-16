@@ -1,27 +1,20 @@
+<!-- guest_list.html -->
 <!DOCTYPE html>
-<html lang="cs">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Seznam hostů</title>
 </head>
 <body>
-    <h1>Tvůj seznam hostů</h1>
+    <h1>Seznam mých hostů</h1>
 
     {% if guests %}
         <ul>
             {% for guest in guests %}
-                <li>
-                    <strong>{{ guest.first_name }} {{ guest.last_name }}</strong><br>
-                    Email: {{ guest.email }}<br>
-                    Občanka: {{ guest.id_number }}<br>
-                    Příjezd: {{ guest.checkin_date }}<br>
-                    Odjezd: {{ guest.checkout_date }}
-                </li>
-                <hr>
+                <li>{{ guest.name }} ({{ guest.email }})</li>  <!-- 🟩 Vypíše jméno a e-mail hosta -->
             {% endfor %}
         </ul>
     {% else %}
-        <p>Zatím nemáš žádné hosty.</p>
+        <p>Nemáš zatím žádné hosty.</p>  <!-- 🟨 Pokud nejsou žádní hosté -->
     {% endif %}
 </body>
 </html>
