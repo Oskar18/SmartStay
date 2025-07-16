@@ -1,18 +1,44 @@
+<!-- # Tento HTML soubor se zobrazí po úspěšném odeslání formuláře -->
 <!DOCTYPE html>
-<html>
+<html lang="cs"> <!-- # Nastavení jazyka dokumentu na češtinu -->
 <head>
-    <title>Check-in hosta</title> <!-- # Název záložky v prohlížeči -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!-- # Importujeme W3.CSS pro jednoduché designové prvky -->
+    <meta charset="UTF-8"> <!-- # Správné kódování češtiny -->
+    <title>Úspěšný check-in</title> <!-- # Název stránky v záložce -->
+    <style>
+        /* # Jednoduché CSS pro vzhled stránky */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2e7d32;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #1b5e20;
+        }
+    </style>
 </head>
-<body class="w3-container"> <!-- # W3.CSS kontejner pro zarovnání obsahu -->
-
-    <h2 class="w3-teal w3-padding">Check-in formulář</h2> <!-- # Nadpis formuláře se zeleným pruhem -->
-
-    <form method="post" class="w3-container w3-card-4 w3-light-grey"> <!-- # Začátek formuláře, metoda POST pro odesílání dat -->
-        {% csrf_token %} <!-- # Bezpečnostní token proti podvržení formuláře (Cross-Site Request Forgery) -->
-        {{ form.as_p }} <!-- # Django vykreslí náš formulář jako paragrafy (každé pole má vlastní <p>) -->
-        <button type="submit" class="w3-button w3-teal w3-margin-top">Odeslat</button> <!-- # Tlačítko pro odeslání formuláře -->
-    </form>
-
+<body>
+    <h1>Děkujeme za vyplnění formuláře!</h1> <!-- # Hlavní nadpis -->
+    <p>Vaše údaje byly úspěšně odeslány a uloženy do systému.</p> <!-- # Text potvrzení -->
+    <a href="/">Zpět na hlavní stránku</a> <!-- # Odkaz zpět -->
 </body>
 </html>

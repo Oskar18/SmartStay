@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Seznam hostů</title>
+</head>
+<body>
+    <h1>Tvůj seznam hostů</h1>
+
+    {% if guests %}
+        <ul>
+            {% for guest in guests %}
+                <li>
+                    <strong>{{ guest.first_name }} {{ guest.last_name }}</strong><br>
+                    Email: {{ guest.email }}<br>
+                    Občanka: {{ guest.id_number }}<br>
+                    Příjezd: {{ guest.checkin_date }}<br>
+                    Odjezd: {{ guest.checkout_date }}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Zatím nemáš žádné hosty.</p>
+    {% endif %}
+</body>
+</html>

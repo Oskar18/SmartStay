@@ -1,25 +1,19 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
-
+from django.contrib.auth.models import User  # ← přidáme pro vazbu na uživatele
 
 class Guest(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    # spojení s přihlášeným uživatelem
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)  # ← každý host patří konkrétnímu uživateli
+
+    name = models.CharField(max_length=100)
+    id_number = models.CharField(max_length=50)
     email = models.EmailField()
-    nationality = models.CharField(max_length=50)
-    id_number = models.CharField(max_length=50, verbose_name="Číslo dokladu")
     checkin_date = models.DateField()
     checkout_date = models.DateField()
 
-    STAY_TYPE_CHOICES = [
-        ('short', 'Krátkodobý'),
-        ('long', 'Dlouhodobý'),
-    ]
-    stay_type = models.CharField(max_length=10, choices=STAY_TYPE_CHOICES)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.name} ({self.email})"
+
+# 💬 Vysvětlivka:
+# - `owner = ForeignKey(...)` znamená, že každý záznam hosta je propojený s jedním uživatelem (např. admin, martin...)
+# - `on_delete=models.CASCADE` zajistí, že když se smaže uživatel, smažou se i jeho hosté
