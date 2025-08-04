@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SmartStay{% endblock %}</title>
+</head>
+<body>
+    <h1>🌍 SmartStay</h1>
+
+    {% if user.is_authenticated %}
+        <p>Přihlášen jako: {{ user.username }}</p>
+        <p>
+            <a href="{% url 'home' %}">🏠 Domů</a> |
+            <a href="{% url 'guest_list' %}">📋 Moji hosté</a> |
+            <a href="{% url 'guest_checkin' %}">➕ Přidat hosta</a> |
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">🚪 Odhlásit se</button>
+            </form>
+        </p>
+    {% else %}
+        <p>
+            <a href="{% url 'login' %}">🔐 Přihlášení</a> |
+            <a href="{% url 'register' %}">🆕 Registrace</a>
+        </p>
+    {% endif %}
+
+    <hr>
+
+    {% block content %}{% endblock %}  <!-- ✅ Zde bude konkrétní obsah každé stránky -->
+
+</body>
+</html>

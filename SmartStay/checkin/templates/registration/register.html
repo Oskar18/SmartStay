@@ -1,0 +1,10 @@
+{% extends 'checkin/base.html' %}
+
+{% block content %}
+  <h2>Registrace pronajímatele</h2>
+  <form method="post">  <!-- formulář pro registraci -->
+    {% csrf_token %}  <!-- ochrana proti CSRF útokům -->
+    {{ form.as_p }}  <!-- Django automaticky vykreslí formulář -->
+    <button type="submit">Registrovat</button>  <!-- tlačítko pro odeslání -->
+  </form>
+{% endblock %}

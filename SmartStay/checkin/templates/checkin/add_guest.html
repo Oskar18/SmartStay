@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Přidat nového hosta</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- 🟢 Formulář v podobě <p> bloků -->
+    <button type="submit">Uložit hosta</button>
+</form>
+
+<p><a href="{% url 'guest_list' %}">← Zpět na seznam hostů</a></p>
+{% endblock %}

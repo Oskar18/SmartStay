@@ -1,7 +1,8 @@
 from django.contrib import admin
-from django.urls import path, include  # ← přidali jsme include!
+from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('checkin.urls')),  # ← tohle jsme přidali
+    path('admin/', admin.site.urls),  # 🛠️ Admin rozhraní
+    path('', include('checkin.urls')),  # 📦 Připojení URL aplikace checkin
+    path('accounts/', include('django.contrib.auth.urls')),  # 🔐 Přihlášení/odhlášení
 ]
