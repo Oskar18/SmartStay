@@ -1,10 +1,12 @@
+<!-- checkin/templates/checkin/property_form.html -->
+
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>🧾 Přidat hosta</h2>
+  <h2>Přidat novou nemovitost</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Zapsat hosta</button>
+    <button type="submit">Uložit</button>
   </form>
 {% endblock %}

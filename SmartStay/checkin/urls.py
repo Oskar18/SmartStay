@@ -1,9 +1,13 @@
-from django.urls import path  # 🛤️ Cesty URL
-from . import views  # 📥 Importujeme views z aktuální složky
+# checkin/urls.py
+
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),  # 🏠 Domácí stránka
-    path('guests/', views.guest_list, name='guest_list'),  # 📋 Seznam hostů
-    path('register/', views.register, name='register'),  # 🆕 Registrace
-    path('checkin/', views.guest_checkin, name='guest_checkin'),  # 📝 Přidání hosta
+    path('', views.home, name='home'),  # 🏠 Domovská stránka
+    path('register/', views.register, name='register'),  # 👤 Registrace
+    path('add-guest/', views.add_guest, name='add_guest'),  # 🧾 Přidat hosta
+    path('guests/', views.guest_list, name='guest_list'),  # 📄 Seznam hostů
+    path('add-property/', views.add_property, name='add_property'),  # ➕ Přidat nemovitost
+    path('properties/', views.property_list, name='property_list'),  # 🏠 Seznam nemovitostí
 ]

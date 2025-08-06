@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 class Property(models.Model):  # 🏘️ Model pro nemovitosti
     name = models.CharField(max_length=100)  # 🏷️ Název nemovitosti
+    location = models.CharField(max_length=100)  # 📍 Umístění (např. město nebo oblast)
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # 👤 Vlastník (pronajímatel)
 
     def __str__(self):

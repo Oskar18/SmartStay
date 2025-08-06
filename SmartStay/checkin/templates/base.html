@@ -1,0 +1,20 @@
+<!-- checkin/templates/base.html -->
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartStay</title>
+</head>
+<body>
+    <h1>SmartStay</h1>
+    {% if user.is_authenticated %}
+        <p>Přihlášen: {{ user.username }} | <a href="{% url 'logout' %}">Odhlásit se</a></p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Přihlásit se</a> | <a href="{% url 'register' %}">Registrovat</a></p>
+    {% endif %}
+
+    <hr>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

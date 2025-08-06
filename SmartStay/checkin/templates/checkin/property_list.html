@@ -1,0 +1,17 @@
+{% extends "checkin/base.html" %}
+
+{% block content %}
+  <h2>Seznam nemovitostí</h2>
+  {% if properties %}
+    <ul>
+      {% for property in properties %}
+        <li>{{ property.name }} – {{ property.location }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Nemáte žádné nemovitosti.</p>
+  {% endif %}
+
+  <a href="{% url 'add_property' %}">➕ Přidat novou nemovitost</a><br>
+  <a href="{% url 'home' %}">🏠 Zpět na domů</a>
+{% endblock %}

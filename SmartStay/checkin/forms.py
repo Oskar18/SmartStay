@@ -1,12 +1,21 @@
-from django import forms  # 🛠️ Práce s formuláři
-from .models import Guest  # 📦 Import modelu hosta
+# checkin/forms.py
 
-class GuestForm(forms.ModelForm):  # 📝 Formulář založený na modelu Guest
-    def __init__(self, *args, **kwargs):  # 🧠 Vlastní inicializace formuláře
-        user = kwargs.pop('user')  # 🔍 Vytáhneme přihlášeného uživatele
-        super().__init__(*args, **kwargs)  # 🧬 Základní inicializace
-        self.fields['property'].queryset = user.property_set.all()  # 🏠 Jen nemovitosti tohoto uživatele
+from django import forms
+from .models import Guest, Property
 
+class PropertyForm(forms.ModelForm):  # 🏠 Formulář pro nemovitosti
     class Meta:
-        model = Guest  # 📦 Založeno na modelu Guest
-        fields = ['name', 'date_of_birth', 'property']  # 🧾 Vyplňovaná pole
+        model = Property
+        fields = ['name', 'location']  # 📍 Název + lokalita
+
+class GuestForm(forms.ModelForm):  # 🧍‍♂️ Formulář pro hosty
+    class Meta:
+        model = Guest
+        fields = ['name', 'date_of_birth', 'property']  # 🧾 Nezobrazujeme user
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # 🧍‍♂️ Získáme přihlášeného uživatele
+        super().__init__(*args, **kwargs)
+        if user:
+            # 🔒 Omezíme výběr nemovitostí na ty, které vlastní daný uživatel
+            self.fields['property'].queryset = Property.objects.filter(user=user)

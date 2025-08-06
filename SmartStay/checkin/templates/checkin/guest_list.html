@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>📋 Seznam hostů</h2>
+  <h2>📄 Seznam hostů</h2>
 
   {% if guests %}
     <ul>
       {% for guest in guests %}
-        <li>{{ guest.name }} – {{ guest.date_of_birth }} – {{ guest.date_from }} až {{ guest.date_to }}</li>
+        <li>{{ guest.name }} ({{ guest.date_of_birth }}) – {{ guest.property.name }}</li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>Žádní hosté zatím nejsou zapsaní.</p>
+    <p>Žádní hosté zatím nejsou zapsáni.</p>
   {% endif %}
 
-  <a href="{% url 'guest_checkin' %}">➕ Přidat dalšího hosta</a>
+  <hr>
+
+  <p>
+    <a href="{% url 'add_guest' %}">➕ Přidat dalšího hosta</a> |
+    <a href="{% url 'home' %}">🏠 Zpět na hlavní stránku</a>
+  </p>
 {% endblock %}
