@@ -12,7 +12,7 @@
         <p>
             <a href="{% url 'home' %}">🏠 Domů</a> |
             <a href="{% url 'guest_list' %}">📋 Moji hosté</a> |
-            <a href="{% url 'guest_checkin' %}">➕ Přidat hosta</a> |
+            <a href="{% url 'add_guest' %}">➕ Přidat hosta</a>
             <form method="post" action="{% url 'logout' %}" style="display:inline;">
                 {% csrf_token %}
                 <button type="submit">🚪 Odhlásit se</button>

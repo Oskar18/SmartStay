@@ -31,14 +31,6 @@ def guest_list(request):
     return render(request, 'checkin/guest_list.html', {'guests': guests})
 
 @login_required
-def property_list(request):  # 🏠 Nový view pro seznam nemovitostí
-    if request.user.is_superuser:
-        properties = Property.objects.all()
-    else:
-        properties = Property.objects.filter(user=request.user)
-    return render(request, 'checkin/property_list.html', {'properties': properties})
-
-@login_required
 def add_property(request):
     if request.method == 'POST':
         form = PropertyForm(request.POST)
@@ -50,6 +42,14 @@ def add_property(request):
     else:
         form = PropertyForm()
     return render(request, 'checkin/add_property.html', {'form': form})
+
+@login_required
+def property_list(request):  # 🏘️ Seznam nemovitostí pro přihlášeného uživatele
+    if request.user.is_superuser:
+        properties = Property.objects.all()
+    else:
+        properties = Property.objects.filter(user=request.user)
+    return render(request, 'checkin/property_list.html', {'properties': properties})
 
 @login_required
 def add_guest(request):
